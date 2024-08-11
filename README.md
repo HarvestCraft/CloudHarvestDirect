@@ -24,6 +24,7 @@ An artist file allows you to narrow down the search to links associated with spe
 - Each line in the artist file should contain the full URL of the artist's SoundCloud page, ending with a `/`.
 - Example entry: https://soundcloud.com/artistname/
 - The trailing slash at the end of the artist URL ensures that only exact matches are considered. For example, `https://soundcloud.com/artistname/` will not mistakenly match `https://soundcloud.com/artistname123/`, which is a different artist.
+- Try to add as many Artists as possible
 
 
 ### Usage
