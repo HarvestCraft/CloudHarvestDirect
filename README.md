@@ -1,14 +1,14 @@
 <p align="center">
-  <img src="https://imgur.com/n0OSbBP.png" alt="CloudHarvestDirect Logo" width="200">
+  <img src="https://imgur.com/n0OSbBP.png" alt=" CloudHarvestDirect™ Logo" width="200">
 </p>
 
 <h1 align="center">
-  CloudHarvestDirect™
+   CloudHarvestDirect™™
 </h1>
 
 ## Overview
 
-CloudHarvestDirect is a powerful tool designed to automate the process of checking SoundCloud links to find private or hidden tracks. It generates combinations of link identifiers, checks if they redirect to valid SoundCloud URLs, and saves any valid matches to an output file. The script includes a graphical user interface (GUI) built with `tkinter` for ease of use.
+ CloudHarvestDirect™ is a powerful tool designed to automate the process of checking SoundCloud links to find private or hidden tracks. It generates combinations of link identifiers, checks if they redirect to valid SoundCloud URLs, and saves any valid matches to an output file. The script includes a graphical user interface (GUI) built with `tkinter` for ease of use.
 
 ## Features
 
@@ -68,9 +68,9 @@ An artist file allows you to target your search to links associated with specifi
   <img src="https://imgur.com/HqKjzG0.png" alt="Link Checker in Use" width="400">
 </p>
 
-# CloudHarvestDirect Link Searcher
+#  CloudHarvestDirect™ Link Searcher
 
-CloudHarvestDirect Link Searcher is a simple and efficient tool for searching through a master list of SoundCloud links. The tool is designed to help you quickly find specific links from a large dataset, with features that allow you to save your search results as a text file.
+ CloudHarvestDirect™ Link Searcher is a simple and efficient tool for searching through a master list of SoundCloud links. The tool is designed to help you quickly find specific links from a large dataset, with features that allow you to save your search results as a text file.
 
 ## Features
 
@@ -83,7 +83,7 @@ CloudHarvestDirect Link Searcher is a simple and efficient tool for searching th
 
 
 <p align="center">
-  <img src="https://imgur.com/SJcdgLZ.png" alt="CloudHarvestDirect Link Searcher" width="400">
+  <img src="https://imgur.com/SJcdgLZ.png" alt=" CloudHarvestDirect™ Link Searcher" width="400">
 </p>
 
 **Note:** The program may appear unresponsive while loading a large master links file. Please wait for about 30 seconds.
