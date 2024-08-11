@@ -60,7 +60,7 @@ An artist file allows you to target your search to links associated with specifi
 
 <p align="center">
   <img src="https://imgur.com/UtrJm6C.png" alt="Default Link Checker GUI" width="400">
-  <img src="https://imgur.com/Ka3xuRS.png" alt="Mac Version of Link Checker GUI" width="400">
+  <img src="https://imgur.com/Ka3xuRS.png" alt="Mac Version of Link Checker GUI" width="480">
 </p>
 
 ### Link Checker in Use
