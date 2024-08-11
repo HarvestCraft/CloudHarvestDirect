@@ -41,6 +41,9 @@ async def fetch_url(session, url):
 async def check_link(session, url):
     global total_requests, matched_urls
 
+    if stop_flag:
+        return  # Stop if the flag is set
+
     response, text = await fetch_url(session, url)
     total_requests += 1
 
@@ -70,14 +73,15 @@ async def main():
             done, pending = await asyncio.wait(tasks, return_when=asyncio.FIRST_COMPLETED)
             tasks = list(pending)
 
-        await asyncio.gather(*tasks)
+        # Wait for remaining tasks to complete before fully stopping
+        await asyncio.gather(*tasks, return_exceptions=True)
 
     save_links()
 
 def save_links():
     with open("output.json", "w") as f:
         json.dump(matched_urls, f, indent=4)
-    print(f"\nOutput File: outputs.json")
+    print(f"\nOutput File: output.json")
 
 def on_start():
     global stop_flag, total_requests, matched_urls, link_combo, concurrency_limit
@@ -86,6 +90,8 @@ def on_start():
     matched_urls = []
     link_combo = entry_starting_point.get()
     concurrency_limit = int(entry_process_count.get())
+    start_button.config(state=tk.DISABLED)
+    stop_button.config(state=tk.NORMAL)
     threading.Thread(target=run_main).start()
 
 def run_main():
@@ -94,6 +100,12 @@ def run_main():
 def on_stop():
     global stop_flag
     stop_flag = True
+    status_text.config(state=tk.NORMAL)
+    status_text.insert(tk.END, "Stopping in progress...\n")
+    status_text.see(tk.END)
+    status_text.config(state=tk.DISABLED)
+    stop_button.config(state=tk.DISABLED)
+    start_button.config(state=tk.NORMAL)
 
 def update_status():
     status_text.config(state=tk.NORMAL)
@@ -151,10 +163,13 @@ if __name__ == "__main__":
     tk.Label(root, text="Artist File:", **style_config, font=("Helvetica", 12)).grid(row=2, column=0, padx=10, pady=10, sticky="w")
     entry_artist_file = tk.Entry(root, **entry_config)
     entry_artist_file.grid(row=2, column=1, padx=10, pady=10)
-    tk.Button(root, text="Browse", command=select_artist_file, **style_config, font=("Helvetica", 12)).grid(row=2, column=2, padx=10, pady=10)
+    tk.Button(root, text="Browse", command=select_artist_file, font=("Helvetica", 12)).grid(row=2, column=2, padx=10, pady=10)
 
-    tk.Button(root, text="Start", command=on_start, **style_config, font=("Helvetica", 12)).grid(row=3, column=0, padx=10, pady=10)
-    tk.Button(root, text="Stop", command=on_stop, **style_config, font=("Helvetica", 12)).grid(row=3, column=1, padx=10, pady=10)
+    start_button = tk.Button(root, text="Start", command=on_start, font=("Helvetica", 12), width=10)
+    start_button.grid(row=3, column=0, padx=10, pady=10)
+
+    stop_button = tk.Button(root, text="Stop", command=on_stop, font=("Helvetica", 12), width=10, state=tk.DISABLED)
+    stop_button.grid(row=3, column=1, padx=10, pady=10)
 
     # Create a frame for the status text
     frame_style_config = {
