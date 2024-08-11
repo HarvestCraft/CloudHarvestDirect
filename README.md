@@ -91,7 +91,6 @@ An artist file allows you to narrow down the search to links associated with spe
 - **Duplicate Links**:
 - Duplicates may occur due to redirection caching, multiple identifiers for the same track, or network latency. These are handled by the script but may still result in repeated entries.
 
-#### False Positives
 
 ## The regex filter may cause some false positives, such as:
 - **Old Private Tracks**: Tracks that were once private but are now public may still retain the private token in their URLs.
