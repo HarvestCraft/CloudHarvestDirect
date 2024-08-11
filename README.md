@@ -3,7 +3,7 @@
 </p>
 
 <h1 align="center">
-   CloudHarvestDirect™™
+   CloudHarvestDirect™
 </h1>
 
 ## Overview
