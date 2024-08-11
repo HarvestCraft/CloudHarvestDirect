@@ -114,7 +114,7 @@ CloudHarvestDirect Link Searcher is a simple and efficient tool for searching th
 
 - **Link Structure**: SoundCloud uses shortened links (e.g., `https://on.soundcloud.com/xxxxx`) where `xxxxx` is a five-character identifier.
 - **Brute-Force Potential**: The identifier can be brute-forced to find valid links to private content. Although there are theoretically 916 million possible combinations, the actual number is lower due to restrictions such as:
-  - Identifiers cannot start with a digit.
+  - Identifiers cannot start with a 0.
   - Certain characters or combinations might be excluded for usability or aesthetic reasons.
   - Additional internal rules may further limit valid identifiers.
 
