@@ -90,7 +90,17 @@ CloudHarvestDirect Link Searcher is a simple and efficient tool for searching th
 
 **Note:** The program may appear unresponsive while loading a large master links file. Please wait for about 30 seconds.
 
-## Bug Report: Insecure Direct Object Reference (IDOR) Vulnerability in SoundCloud Shareable Links
+
+
+## Credits
+
+- **Script Development**: Original random link finding version credited to [3eyka](https://github.com/3eyka/sound-cloudripper) and [fancymalware](https://github.com/fancymalware/soundcloud-ripper). Thank you for the inspiration!
+
+- 
+
+## The Bug Report: 
+
+### Insecure Direct Object Reference (IDOR) Vulnerability in SoundCloud Shareable Links
 
 ### Report Summary
 
@@ -126,7 +136,4 @@ The regex filter may cause some false positives, such as:
 - **Old Private Tracks**: Tracks that were once private but are now public may still retain the private token in their URLs.
 - **Deleted Tracks**: Links to deleted tracks might also match the regex, leading to incorrect identification as private content.
 
-## Credits
-
-- **Script Development**: Original random link finding version credited to [3eyka](https://github.com/3eyka/sound-cloudripper) and [fancymalware](https://github.com/fancymalware/soundcloud-ripper). Thank you for the inspiration!
 
