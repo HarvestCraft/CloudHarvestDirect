@@ -58,6 +58,29 @@ An artist file allows you to narrow down the search to links associated with spe
 ![Link Checker in Use](https://imgur.com/lKjxNGi.png)
 
 
+
+
+# CloudHarvestDirect Link Searcher
+
+
+CloudHarvestDirect Link Searcher is a simple and efficient tool for searching through a master list of SoundCloud links. The tool is designed to help you quickly find specific links from a large dataset, with features that allow you to save your search results as a text file.
+
+## Features
+
+- **Dark Mode Interface**: Enjoy a sleek and modern dark-themed user interface.
+- **Master Links File Selection**: Easily load your master list of SoundCloud links using a file selection dialog.
+- **Efficient Search**: Search through thousands of links in seconds using the built-in search functionality.
+- **Save Search Results**: Save your search results to a text file, with the ability to name the file as desired.
+- **Clear Search Results**: Clear your current search results and start fresh with a single click.
+- **Logbox Notifications**: Get real-time feedback on the tool's operations through the logbox at the bottom of the interface.
+
+
+
+
+
+
+
+##
 ## Bug Report: Insecure Direct Object Reference (IDOR) Vulnerability in SoundCloud Shareable Links
 
 ### Report Summary
