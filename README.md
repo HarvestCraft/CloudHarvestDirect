@@ -55,14 +55,14 @@ An artist file allows you to target your search to links associated with specifi
 ### Default Link Checker GUI
 
 <p align="center">
-  <img src="https://imgur.com/aJYsfGk.png" alt="Default Link Checker GUI" width="400">
+  <img src="https://imgur.com/UtrJm6C.png" alt="Default Link Checker GUI" width="400">
   <img src="https://imgur.com/Ka3xuRS.png" alt="Mac Version of Link Checker GUI" width="400">
 </p>
 
 ### Link Checker in Use
 
 <p align="center">
-  <img src="https://imgur.com/lKjxNGi.png" alt="Link Checker in Use" width="400">
+  <img src="https://imgur.com/HqKjzG0.png" alt="Link Checker in Use" width="400">
 </p>
 
 # CloudHarvestDirect Link Searcher
