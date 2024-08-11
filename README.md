@@ -24,6 +24,8 @@ This script is designed to automate the process of checking SoundCloud links to 
 2. Navigate to the folder containing the script using `cd PATH_TO_FOLDER_WITH_SCRIPT`.
 3. Run the script with `python HarvestTool.py`.
 
+ ![Alt text] (https://imgur.com/aJYsfGk)
+
 ## Bug Report: Insecure Direct Object Reference (IDOR) Vulnerability in SoundCloud Shareable Links
 
 ### Report Summary
