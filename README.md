@@ -68,9 +68,9 @@ CloudHarvestDirect Link Searcher is a simple and efficient tool for searching th
 
 ## Features
 
-- **Dark Mode Interface**: Enjoy a sleek and modern dark-themed user interface.
+- **Dark Mode Interface**: Enjoy a sleek dark-themed user interface.
 - **Master Links File Selection**: Easily load your master list of SoundCloud links using a file selection dialog.
-- **Efficient Search**: Search through thousands of links in seconds using the built-in search functionality.
+- **Efficient Search**: Search through millions of links in seconds using the built-in search functionality.
 - **Save Search Results**: Save your search results to a text file, with the ability to name the file as desired.
 - **Clear Search Results**: Clear your current search results and start fresh with a single click.
 - **Logbox Notifications**: Get real-time feedback on the tool's operations through the logbox at the bottom of the interface.
