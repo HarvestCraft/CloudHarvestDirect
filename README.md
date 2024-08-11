@@ -75,6 +75,13 @@ CloudHarvestDirect Link Searcher is a simple and efficient tool for searching th
 - **Logbox Notifications**: Get real-time feedback on the tool's operations through the logbox at the bottom of the interface.
 
 
+Below is a screenshot of the CloudHarvestDirect Link Searcher
+
+![CloudHarvestDirect Link Searcher](https://imgur.com/SJcdgLZ.png)
+
+**Warning:** PROGRAM MAY SAY NOT RESPONDING WHILE LOADING A LARGE MASTER LINKS FILE JUST WAIT 30 SECONDS
+
+
 
 
 
