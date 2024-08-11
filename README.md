@@ -133,4 +133,4 @@ Below is a screenshot of the CloudHarvestDirect Link Searcher
 
 ## Credits
 
-- **Script Development**: Original script and random version credited to [3eyka](https://github.com/3eyka/sound-cloudripper) and [fancymalware](https://github.com/fancymalware/soundcloud-ripper) <3
+- **Script Development**: Original random link finding version credited to [3eyka](https://github.com/3eyka/sound-cloudripper) and [fancymalware](https://github.com/fancymalware/soundcloud-ripper) <3 thank you for the idea. 
