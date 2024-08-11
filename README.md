@@ -66,4 +66,4 @@ This script is designed to automate the process of checking SoundCloud links to 
 
 ## Credits
 
-- **Script Development**: Original script and random version credited to [3eyka](https://github.com/3eyka/sound-cloudripper) and [fancymalware](https://github.com/fancymalware/soundcloud-ripper).
+- **Script Development**: Original random link finding version credited to [3eyka](https://github.com/3eyka/sound-cloudripper) and [fancymalware](https://github.com/fancymalware/soundcloud-ripper).
