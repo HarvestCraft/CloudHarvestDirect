@@ -97,22 +97,11 @@ An artist file allows you to narrow down the search to links associated with spe
 - **Old Private Tracks**: Tracks that were once private but are now public may still retain the private token in their URLs.
 - **Deleted Tracks**: Links to deleted tracks might also match the regex, leading to incorrect identification as private content.
 
-### Impact
 
-- **Artists**: Unauthorized access to private tracks can lead to premature leaks and potential financial and reputational damage.
-- **SoundCloud**: The platform's trustworthiness is compromised, affecting its relationship with both artists and users.
-- **Users**: The integrity of private sharing is undermined, leading to privacy concerns and dissatisfaction.
 
-### Mitigation Recommendations
 
-1. **Enhanced Link Security**: Use longer and more randomized strings for identifiers to make brute-force attacks impractical.
-2. **Rate Limiting**: Implement rate limiting on the validation of shortened links to detect and prevent automated scripts from testing large numbers of links in a short period.
-3. **Improved Monitoring**: Establish monitoring mechanisms to detect unusual patterns of access attempts, specifically targeting the shortened link system.
 
-### Conclusion
-
-The identified IDOR vulnerability in SoundCloud's link system allows unauthorized access to private content. Exploiting this vulnerability is ethically wrong and has far-reaching implications. Addressing this issue promptly through enhanced security measures, rate limiting, and improved monitoring is essential to maintain trust and integrity within the SoundCloud community. By taking proactive steps, SoundCloud can continue to provide a secure and reliable platform for artists and listeners alike.
 
 ## Credits
 
-- **Script Development**: Original script and random version credited to [3eyka](https://github.com/3eyka/sound-cloudripper) and [fancymalware](https://github.com/fancymalware/soundcloud-ripper).
+- **Script Development**: Original script and random version credited to [3eyka](https://github.com/3eyka/sound-cloudripper) and [fancymalware](https://github.com/fancymalware/soundcloud-ripper) <3
