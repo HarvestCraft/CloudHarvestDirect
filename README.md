@@ -40,11 +40,15 @@ An artist file allows you to target your search to links associated with specifi
 - Python 3.x installed on your machine.
 - Basic command line knowledge.
 
-### Steps to Use
+### Steps to Use on Windows
 
 1. Open the command prompt.
 2. Navigate to the folder containing the script using `cd PATH_TO_FOLDER_WITH_SCRIPT`.
 3. Run the script with `python HarvestTool.py`.
+
+### Steps to Use on Mac
+
+1. No fucking idea I'm poor
 
 ## Screenshots
 
@@ -52,6 +56,7 @@ An artist file allows you to target your search to links associated with specifi
 
 <p align="center">
   <img src="https://imgur.com/aJYsfGk.png" alt="Default Link Checker GUI" width="400">
+  <img src="https://imgur.com/Ka3xuRS.png" alt="Mac Version of Link Checker GUI" width="400">
 </p>
 
 ### Link Checker in Use
