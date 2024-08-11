@@ -71,22 +71,22 @@ An artist file allows you to narrow down the search to links associated with spe
 
 #### Vulnerability Overview
 
-- **Link Structure**: SoundCloud uses shortened links (e.g., `https://on.soundcloud.com/xxxxx`) where `xxxxx` is a five-character identifier.
-- **Brute-Force Potential**: The identifier can be brute-forced to find valid links to private content. Although there are theoretically 916 million possible combinations, the actual number is lower due to restrictions such as:
+ **Link Structure**: SoundCloud uses shortened links (e.g., `https://on.soundcloud.com/xxxxx`) where `xxxxx` is a five-character identifier.
+ **Brute-Force Potential**: The identifier can be brute-forced to find valid links to private content. Although there are theoretically 916 million possible combinations, the actual number is lower due to restrictions such as:
 - Identifiers cannot start with a digit.
 - Certain characters or combinations might be excluded for usability or aesthetic reasons.
 - Additional internal rules may further limit valid identifiers.
 
 #### Script Functionality
 
-- **Link Generation**: 
+ **Link Generation**: 
 - The script generates all possible combinations of the identifier within the defined constraints.
-- **Link Testing**:
+ **Link Testing**:
 - Each generated link is tested to determine if it corresponds to a valid private track or playlist.
 - This is achieved by catching the redirect (HTTP 302 response) from the shortened link to the full SoundCloud URL.
-- **Private Content Detection**:
+ **Private Content Detection**:
 - A regex is used to identify if the full link contains a private token, which is unique to private tracks and playlists.
-- **Output Handling**:
+ **Output Handling**:
 - Valid private links are saved in a JSON file, documenting them for further review or action.
 - **Duplicate Links**:
 - Duplicates may occur due to redirection caching, multiple identifiers for the same track, or network latency. These are handled by the script but may still result in repeated entries.
