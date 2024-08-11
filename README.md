@@ -1,9 +1,9 @@
 <p align="center">
   <img src="https://imgur.com/n0OSbBP.png" alt="CloudHarvestDirect Logo" width="200">
 </p>
-
+<p align="center">
 # CloudHarvestDirect
-
+</p>
 ## Overview
 
 CloudHarvestDirect is a powerful tool designed to automate the process of checking SoundCloud links to find private or hidden tracks. It generates combinations of link identifiers, checks if they redirect to valid SoundCloud URLs, and saves any valid matches to an output file. The script includes a graphical user interface (GUI) built with `tkinter` for ease of use.
