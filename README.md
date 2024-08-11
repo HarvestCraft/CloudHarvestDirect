@@ -67,9 +67,9 @@ An artist file allows you to narrow down the search to links associated with spe
 - **Summary**: 
 - A vulnerability has been identified in SoundCloud's link system that allows unauthorized access to private tracks and playlists through insecure direct object references (IDOR). By brute-forcing the five-character identifier in shareable links, an attacker can discover valid URLs leading to private content. This report details the exploit, its impact, and proposed mitigations.
 
-### Technical Details
+## Technical Details
 
-#### Vulnerability Overview
+### Vulnerability Overview
 
  **Link Structure**: SoundCloud uses shortened links (e.g., `https://on.soundcloud.com/xxxxx`) where `xxxxx` is a five-character identifier.
  **Brute-Force Potential**: The identifier can be brute-forced to find valid links to private content. Although there are theoretically 916 million possible combinations, the actual number is lower due to restrictions such as:
@@ -77,7 +77,7 @@ An artist file allows you to narrow down the search to links associated with spe
 - Certain characters or combinations might be excluded for usability or aesthetic reasons.
 - Additional internal rules may further limit valid identifiers.
 
-#### Script Functionality
+## Script Functionality
 
  **Link Generation**: 
 - The script generates all possible combinations of the identifier within the defined constraints.
