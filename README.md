@@ -93,7 +93,7 @@ An artist file allows you to narrow down the search to links associated with spe
 
 #### False Positives
 
-##The regex filter may cause some false positives, such as:
+## The regex filter may cause some false positives, such as:
 - **Old Private Tracks**: Tracks that were once private but are now public may still retain the private token in their URLs.
 - **Deleted Tracks**: Links to deleted tracks might also match the regex, leading to incorrect identification as private content.
 
