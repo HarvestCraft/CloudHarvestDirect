@@ -6,8 +6,6 @@
   CloudHarvestDirect™
 </h1>
 
-
-
 ## Overview
 
 CloudHarvestDirect is a powerful tool designed to automate the process of checking SoundCloud links to find private or hidden tracks. It generates combinations of link identifiers, checks if they redirect to valid SoundCloud URLs, and saves any valid matches to an output file. The script includes a graphical user interface (GUI) built with `tkinter` for ease of use.
@@ -52,9 +50,10 @@ An artist file allows you to target your search to links associated with specifi
 
 ### Steps to Use on Mac
 
-1. No fucking idea I'm poor
+1. No fucking idea I'm poor.
 
-## Screenshots
+
+
 
 ### Default Link Checker GUI
 
@@ -82,7 +81,6 @@ CloudHarvestDirect Link Searcher is a simple and efficient tool for searching th
 - **Clear Search Results**: Clear your current search results with a single click to start fresh.
 - **Logbox Notifications**: Get real-time feedback on the tool's operations through the logbox at the bottom of the interface.
 
-### Screenshot
 
 <p align="center">
   <img src="https://imgur.com/SJcdgLZ.png" alt="CloudHarvestDirect Link Searcher" width="400">
@@ -90,23 +88,6 @@ CloudHarvestDirect Link Searcher is a simple and efficient tool for searching th
 
 **Note:** The program may appear unresponsive while loading a large master links file. Please wait for about 30 seconds.
 
-
-
-## Credits
-
-- **Script Development**: Original random link finding version credited to [3eyka](https://github.com/3eyka/sound-cloudripper) and [fancymalware](https://github.com/fancymalware/soundcloud-ripper). Thank you for the inspiration!
-
-- 
-
-## The Bug Report: 
-
-### Insecure Direct Object Reference (IDOR) Vulnerability in SoundCloud Shareable Links
-
-### Report Summary
-
-- **Platform**: SoundCloud
-- **Affected URLs**: `https://on.soundcloud.com/xxxxx`
-- **Summary**: A vulnerability in SoundCloud's link system allows unauthorized access to private tracks and playlists through insecure direct object references (IDOR). By brute-forcing the five-character identifier in shareable links, an attacker can discover valid URLs leading to private content. This report details the exploit, its impact, and proposed mitigations.
 
 ### Technical Details
 
@@ -137,3 +118,8 @@ The regex filter may cause some false positives, such as:
 - **Deleted Tracks**: Links to deleted tracks might also match the regex, leading to incorrect identification as private content.
 
 
+
+
+## Credits
+
+- **Script Development**: Original random link finding version credited to [3eyka](https://github.com/3eyka/sound-cloudripper) and [fancymalware](https://github.com/fancymalware/soundcloud-ripper). Thank you for the inspiration!
