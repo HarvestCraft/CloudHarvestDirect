@@ -2,7 +2,7 @@
   <img src="https://imgur.com/n0OSbBP.png" alt="CloudHarvestDirect Logo" width="200">
 </p>
 <p align="center">
-# CloudHarvestDirect
+## CloudHarvestDirect
 </p>
 ## Overview
 
