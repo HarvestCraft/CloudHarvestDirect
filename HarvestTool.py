@@ -122,7 +122,7 @@ def select_artist_file():
 if __name__ == "__main__":
     # Create GUI
     root = tk.Tk()
-    root.title("SoundCloud Link Checker")
+    root.title("CloudHarvestDirect: SoundCloud Link Checker")
     root.configure(bg="#2e2e2e")
 
     # Style configurations for dark mode
