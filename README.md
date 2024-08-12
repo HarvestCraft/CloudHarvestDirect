@@ -30,7 +30,7 @@ An artist .txt file allows you to target your search to links associated with sp
 - Each line in the artist file should contain the full URL of the artist's SoundCloud page, ending with a `/`.
 - Example entry: `https://soundcloud.com/artistname/`
 - The trailing slash at the end of the artist URL ensures that only exact matches are considered.
-- .txt format
+- ` .txt ` format
 
 ### Usage
 
