@@ -1,3 +1,4 @@
+import os
 import asyncio
 import aiohttp
 import re
@@ -7,9 +8,11 @@ from urllib.parse import urlparse, urlunparse
 import threading
 import tkinter as tk
 from tkinter import filedialog, messagebox
+from datetime import datetime
 
 # Global variables
 stop_flag = False
+pause_flag = False
 total_requests = 0
 matched_urls = []
 link_combo = 'aaaaa'
@@ -22,12 +25,15 @@ def increment_link_combo(combo):
     combo_list = list(combo)
     i = len(combo_list) - 1
     while i >= 0:
-        if combo_list[i] == combo_set[-1]:
+        current_index = combo_set.index(combo_list[i])
+        if current_index == len(combo_set) - 1:
             combo_list[i] = combo_set[0]
             i -= 1
         else:
-            combo_list[i] = combo_set[combo_set.index(combo_list[i]) + 1]
+            combo_list[i] = combo_set[current_index + 1]
             break
+    else:
+        combo_list = [combo_set[0]] * (len(combo_list) + 1)  # Extend the length when all positions overflow
     return ''.join(combo_list)
 
 async def fetch_url(session, url):
@@ -40,6 +46,9 @@ async def fetch_url(session, url):
 
 async def check_link(session, url):
     global total_requests, matched_urls
+
+    while pause_flag:
+        await asyncio.sleep(1)  # Pause the loop when pause_flag is set
 
     if stop_flag:
         return  # Stop if the flag is set
@@ -77,20 +86,32 @@ async def main():
         await asyncio.gather(*tasks, return_exceptions=True)
 
     save_links()
+    rename_output_file()  # Rename after saving final output
 
 def save_links():
     with open("output.json", "w") as f:
         json.dump(matched_urls, f, indent=4)
     print(f"\nOutput File: output.json")
 
+def rename_output_file():
+    date_str = datetime.now().strftime("%Y%m%d_%H%M%S")
+    new_filename = f"output_{date_str}.json"
+    try:
+        os.rename("output.json", new_filename)
+        print(f"Output file renamed to: {new_filename}")
+    except Exception as e:
+        print(f"Failed to rename output file: {e}")
+
 def on_start():
-    global stop_flag, total_requests, matched_urls, link_combo, concurrency_limit
+    global stop_flag, pause_flag, total_requests, matched_urls, link_combo, concurrency_limit
     stop_flag = False
+    pause_flag = False
     total_requests = 0
     matched_urls = []
     link_combo = entry_starting_point.get()
     concurrency_limit = int(entry_process_count.get())
     start_button.config(state=tk.DISABLED)
+    pause_button.config(state=tk.NORMAL)
     stop_button.config(state=tk.NORMAL)
     threading.Thread(target=run_main).start()
 
@@ -106,6 +127,22 @@ def on_stop():
     status_text.config(state=tk.DISABLED)
     stop_button.config(state=tk.DISABLED)
     start_button.config(state=tk.NORMAL)
+
+def on_pause():
+    global pause_flag
+    pause_flag = not pause_flag
+    if pause_flag:
+        status_text.config(state=tk.NORMAL)
+        status_text.insert(tk.END, "Paused...\n")
+        status_text.see(tk.END)
+        status_text.config(state=tk.DISABLED)
+        pause_button.config(text="Resume")
+    else:
+        status_text.config(state=tk.NORMAL)
+        status_text.insert(tk.END, "Resuming...\n")
+        status_text.see(tk.END)
+        status_text.config(state=tk.DISABLED)
+        pause_button.config(text="Pause")
 
 def update_status():
     status_text.config(state=tk.NORMAL)
@@ -168,8 +205,11 @@ if __name__ == "__main__":
     start_button = tk.Button(root, text="Start", command=on_start, font=("Helvetica", 12), width=10)
     start_button.grid(row=3, column=0, padx=10, pady=10)
 
+    pause_button = tk.Button(root, text="Pause", command=on_pause, font=("Helvetica", 12), width=10, state=tk.DISABLED)
+    pause_button.grid(row=3, column=1, padx=10, pady=10)
+
     stop_button = tk.Button(root, text="Stop", command=on_stop, font=("Helvetica", 12), width=10, state=tk.DISABLED)
-    stop_button.grid(row=3, column=1, padx=10, pady=10)
+    stop_button.grid(row=3, column=2, padx=10, pady=10)
 
     # Create a frame for the status text
     frame_style_config = {
@@ -192,3 +232,4 @@ if __name__ == "__main__":
     status_text.config(yscrollcommand=status_scroll.set)
 
     root.mainloop()
+
