@@ -23,13 +23,14 @@ CloudHarvestDirect is a powerful tool designed to automate the process of checki
 
 ### Purpose
 
-An artist file allows you to target your search to links associated with specific artists, avoiding unrelated private links. This feature is particularly useful when you want to focus on specific artists.
+An artist .txt file allows you to target your search to links associated with specific artists, avoiding unrelated private links. This feature is particularly useful when you want to focus on specific artists.
 
 ### Format
 
 - Each line in the artist file should contain the full URL of the artist's SoundCloud page, ending with a `/`.
 - Example entry: `https://soundcloud.com/artistname/`
 - The trailing slash at the end of the artist URL ensures that only exact matches are considered.
+- .txt format
 
 ### Usage
 
