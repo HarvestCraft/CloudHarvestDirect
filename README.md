@@ -1,14 +1,16 @@
 <p align="center">
-  <img src="https://imgur.com/n0OSbBP.png" alt=" CloudHarvestDirect™ Logo" width="200">
+  <img src="https://imgur.com/n0OSbBP.png" alt="CloudHarvestDirect Logo" width="200">
 </p>
 
 <h1 align="center">
-   CloudHarvestDirect™
+  CloudHarvestDirect™
 </h1>
+
+---
 
 ## Overview
 
- CloudHarvestDirect™ is a powerful tool designed to automate the process of checking SoundCloud links to find private or hidden tracks. It generates combinations of link identifiers, checks if they redirect to valid SoundCloud URLs, and saves any valid matches to an output file. The script includes a graphical user interface (GUI) built with `tkinter` for ease of use.
+CloudHarvestDirect is a powerful tool designed to automate the process of checking SoundCloud links to find private or hidden tracks. It generates combinations of link identifiers, checks if they redirect to valid SoundCloud URLs, and saves any valid matches to an output file. The script includes a graphical user interface (GUI) built with `tkinter` for ease of use.
 
 ## Features
 
@@ -27,8 +29,7 @@ An artist file allows you to target your search to links associated with specifi
 
 - Each line in the artist file should contain the full URL of the artist's SoundCloud page, ending with a `/`.
 - Example entry: `https://soundcloud.com/artistname/`
-- The trailing slash at the end of the artist URL ensures that only exact matches are considered. For example, `https://soundcloud.com/artistname/` will not mistakenly match `https://soundcloud.com/artistname123/`, which is a different artist.
-- It's recommended to include as many artists as possible to maximize the search's relevance.
+- The trailing slash at the end of the artist URL ensures that only exact matches are considered.
 
 ### Usage
 
@@ -50,10 +51,9 @@ An artist file allows you to target your search to links associated with specifi
 
 ### Steps to Use on Mac
 
-1. No fucking idea I'm poor.
+1. *No fucking idea, I'm poor.*
 
-
-
+## Screenshots
 
 ### Default Link Checker GUI
 
@@ -68,11 +68,11 @@ An artist file allows you to target your search to links associated with specifi
   <img src="https://imgur.com/HqKjzG0.png" alt="Link Checker in Use" width="400">
 </p>
 
-#  CloudHarvestDirect™ Link Searcher
+## CloudHarvestDirect Link Searcher
 
- CloudHarvestDirect™ Link Searcher is a simple and efficient tool for searching through a master list of SoundCloud links. The tool is designed to help you quickly find specific links from a large dataset, with features that allow you to save your search results as a text file.
+CloudHarvestDirect Link Searcher is a simple and efficient tool for searching through a master list of SoundCloud links. The tool is designed to help you quickly find specific links from a large dataset, with features that allow you to save your search results as a text file.
 
-## Features
+### Features
 
 - **Dark Mode Interface**: A sleek, dark-themed user interface for comfortable use.
 - **Master Links File Selection**: Easily load your master list of SoundCloud links via a file selection dialog.
@@ -81,17 +81,21 @@ An artist file allows you to target your search to links associated with specifi
 - **Clear Search Results**: Clear your current search results with a single click to start fresh.
 - **Logbox Notifications**: Get real-time feedback on the tool's operations through the logbox at the bottom of the interface.
 
+### Screenshot
 
 <p align="center">
-  <img src="https://imgur.com/SJcdgLZ.png" alt=" CloudHarvestDirect™ Link Searcher" width="400">
+  <img src="https://imgur.com/SJcdgLZ.png" alt="CloudHarvestDirect Link Searcher" width="400">
 </p>
 
 **Note:** The program may appear unresponsive while loading a large master links file. Please wait for about 30 seconds.
 
 
-### Technical Details
 
-#### Vulnerability Overview
+---
+
+## Technical Details
+
+### Vulnerability Overview
 
 - **Link Structure**: SoundCloud uses shortened links (e.g., `https://on.soundcloud.com/xxxxx`) where `xxxxx` is a five-character identifier.
 - **Brute-Force Potential**: The identifier can be brute-forced to find valid links to private content. Although there are theoretically 916 million possible combinations, the actual number is lower due to restrictions such as:
@@ -106,7 +110,7 @@ An artist file allows you to target your search to links associated with specifi
 - **Private Content Detection**: A regex is used to identify if the full link contains a private token, which is unique to private tracks and playlists.
 - **Output Handling**: Valid private links are saved in a JSON file for further review or action.
 
-#### Handling Duplicate Links
+### Handling Duplicate Links
 
 - **Duplicate Links**: Duplicates may occur due to redirection caching, multiple identifiers for the same track, or network latency. The script handles these, but repeated entries may still appear.
 
@@ -117,9 +121,10 @@ The regex filter may cause some false positives, such as:
 - **Old Private Tracks**: Tracks that were once private but are now public may still retain the private token in their URLs.
 - **Deleted Tracks**: Links to deleted tracks might also match the regex, leading to incorrect identification as private content.
 
-
-
-
+---
 ## Credits
 
 - **Script Development**: Original random link finding version credited to [3eyka](https://github.com/3eyka/sound-cloudripper) and [fancymalware](https://github.com/fancymalware/soundcloud-ripper). Thank you for the inspiration!
+
+---
+
