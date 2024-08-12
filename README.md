@@ -53,6 +53,7 @@ An artist .txt file allows you to target your search to links associated with sp
 ### Steps to Use on Mac
 
 1. *No fucking idea, I'm poor.*
+2. You MUST install 'install certificates.command' from the python folder on your mac or you will get SSL errors. 
 
 ## Screenshots
 
