@@ -1,14 +1,15 @@
+---
 <p align="center">
-  <img src="https://imgur.com/n0OSbBP.png" alt="CloudHarvestDirect Logo" width="200">
+  <img src="https://imgur.com/n0OSbBP.png" alt="CloudHarvestDirect Logo" width="350">
 </p>
 
 <h1 align="center">
   CloudHarvestDirect™
 </h1>
 
----
 
-## Overview
+
+## Overview:
 
 CloudHarvestDirect is a powerful tool designed to automate the process of checking SoundCloud links to find private or hidden tracks. It generates combinations of link identifiers, checks if they redirect to valid SoundCloud URLs, and saves any valid matches to an output file. The script includes a graphical user interface (GUI) built with `tkinter` for ease of use.
 
@@ -44,13 +45,13 @@ An artist .txt file allows you to target your search to links associated with sp
 - Python 3.x installed on your machine.
 - Basic command line knowledge.
 
-### Steps to Use on Windows
+### Steps to Use on Windows:
 
 1. Open the command prompt.
 2. Navigate to the folder containing the script using `cd PATH_TO_FOLDER_WITH_SCRIPT`.
 3. Run the script with `python HarvestTool.py`.
 
-### Steps to Use on Mac
+### Steps to Use on Mac:
 
 1. *No fucking idea, I'm poor.*
 2. You MUST install ` install certificates.command ` from the python folder on your mac or you will get SSL errors. 
@@ -70,7 +71,7 @@ An artist .txt file allows you to target your search to links associated with sp
   <img src="https://imgur.com/HqKjzG0.png" alt="Link Checker in Use" width="400">
 </p>
 
-## CloudHarvestDirect Link Searcher
+## CloudHarvestDirect Link Searcher:
 
 CloudHarvestDirect Link Searcher is a simple and efficient tool for searching through a master list of SoundCloud links. The tool is designed to help you quickly find specific links from a large dataset, with features that allow you to save your search results as a text file.
 
