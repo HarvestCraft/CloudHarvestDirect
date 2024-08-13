@@ -11,6 +11,14 @@ from tkinter import filedialog, messagebox
 from datetime import datetime
 import multiprocessing
 import queue
+import time
+
+# Global variable to store concurrency limit
+concurrency_limit_value = multiprocessing.Value('i', 5000)
+
+def update_concurrency_limit(val):
+    with concurrency_limit_value.get_lock():
+        concurrency_limit_value.value = int(val)
 
 def increment_link_combo(combo, combo_set):
     combo_list = list(combo)
@@ -53,10 +61,12 @@ async def check_link(session, url, stop_flag, pause_flag, total_requests, matche
         if match and (not base_urls or any(base_url in url_final for base_url in base_urls)):
             matched_urls.append(url_final)
 
-async def worker(process_id, stop_flag, pause_flag, total_requests, matched_urls, link_combo, link_combo_lock, combo_set, concurrency_limit, base_urls):
+async def worker(process_id, stop_flag, pause_flag, total_requests, matched_urls, link_combo, link_combo_lock, combo_set, base_urls):
     async with aiohttp.ClientSession() as session:
         tasks = set()
         while not stop_flag.value:
+            with concurrency_limit_value.get_lock():
+                concurrency_limit = concurrency_limit_value.value
             while len(tasks) < concurrency_limit and not stop_flag.value:
                 with link_combo_lock:
                     url = f"https://on.soundcloud.com/{link_combo.value}"
@@ -66,13 +76,13 @@ async def worker(process_id, stop_flag, pause_flag, total_requests, matched_urls
                 task.add_done_callback(tasks.discard)
             await asyncio.sleep(0.1)
 
-def process_worker(process_id, stop_flag, pause_flag, total_requests, matched_urls, link_combo, link_combo_lock, combo_set, concurrency_limit, base_urls):
-    asyncio.run(worker(process_id, stop_flag, pause_flag, total_requests, matched_urls, link_combo, link_combo_lock, combo_set, concurrency_limit, base_urls))
+def process_worker(process_id, stop_flag, pause_flag, total_requests, matched_urls, link_combo, link_combo_lock, combo_set, base_urls):
+    asyncio.run(worker(process_id, stop_flag, pause_flag, total_requests, matched_urls, link_combo, link_combo_lock, combo_set, base_urls))
 
-def main(num_processes, stop_flag, pause_flag, total_requests, matched_urls, link_combo, link_combo_lock, combo_set, concurrency_limit, base_urls):
+def main(num_processes, stop_flag, pause_flag, total_requests, matched_urls, link_combo, link_combo_lock, combo_set, base_urls):
     processes = []
     for i in range(num_processes):
-        p = multiprocessing.Process(target=process_worker, args=(i, stop_flag, pause_flag, total_requests, matched_urls, link_combo, link_combo_lock, combo_set, concurrency_limit, base_urls))
+        p = multiprocessing.Process(target=process_worker, args=(i, stop_flag, pause_flag, total_requests, matched_urls, link_combo, link_combo_lock, combo_set, base_urls))
         processes.append(p)
         p.start()
 
@@ -95,18 +105,21 @@ def rename_output_file():
     except Exception as e:
         print(f"Failed to rename output file: {e}")
 
-def on_start(stop_flag, pause_flag, total_requests, matched_urls, link_combo, link_combo_lock, combo_set, concurrency_limit, base_urls):
+def on_start(stop_flag, pause_flag, total_requests, matched_urls, link_combo, link_combo_lock, combo_set, base_urls):
+    global last_update_time, last_total_requests
+    last_update_time = time.time()  # Initialize last update time
+    last_total_requests = 0  # Initialize last total requests
+
     stop_flag.value = False
     pause_flag.value = False
     total_requests.value = 0
     matched_urls[:] = []
     link_combo.value = entry_starting_point.get()
-    concurrency_limit = int(entry_process_count.get())
     num_processes = multiprocessing.cpu_count()
     start_button.config(state=tk.DISABLED)
     pause_button.config(state=tk.NORMAL)
     stop_button.config(state=tk.NORMAL)
-    threading.Thread(target=lambda: main(num_processes, stop_flag, pause_flag, total_requests, matched_urls, link_combo, link_combo_lock, combo_set, concurrency_limit, base_urls), daemon=True).start()
+    threading.Thread(target=lambda: main(num_processes, stop_flag, pause_flag, total_requests, matched_urls, link_combo, link_combo_lock, combo_set, base_urls), daemon=True).start()
     update_status_periodically(stop_flag, total_requests, matched_urls, link_combo)
 
 def on_stop(stop_flag):
@@ -134,11 +147,22 @@ def on_pause(pause_flag):
         pause_button.config(text="Pause")
 
 def update_status(stop_flag, total_requests, matched_urls, link_combo):
+    global last_update_time, last_total_requests
+    current_time = time.time()
+    elapsed_time = current_time - last_update_time
+
     status_text.config(state=tk.NORMAL)
     status_text.delete("1.0", tk.END)
     status_text.insert(tk.END, f"Links Checked: {total_requests.value}\n")
     status_text.insert(tk.END, f"Links Found: {len(matched_urls)}\n")
     status_text.insert(tk.END, f"Current Link Combo: {link_combo.value}\n")
+
+    if elapsed_time >= 60:  # Calculate links per minute every minute
+        links_per_minute = total_requests.value - last_total_requests
+        status_text.insert(tk.END, f"Links per Minute: {links_per_minute}\n")
+        last_update_time = current_time
+        last_total_requests = total_requests.value
+
     status_text.see(tk.END)
     status_text.config(state=tk.DISABLED)
 
@@ -172,7 +196,6 @@ if __name__ == "__main__":
     link_combo_lock = multiprocessing.Lock()
     base_urls = multiprocessing.Manager().list()
     combo_set = string.ascii_lowercase + string.ascii_uppercase + string.digits
-    concurrency_limit = 5000
 
     root = tk.Tk()
     root.title("CloudHarvestDirect: SoundCloud Link Checker (Multi-Core)")
@@ -187,16 +210,17 @@ if __name__ == "__main__":
     entry_starting_point.insert(0, 'aaaaa')
 
     tk.Label(root, text="Concurrent Tasks per Core:", **style_config, font=("Helvetica", 12)).grid(row=1, column=0, padx=10, pady=10, sticky="w")
-    entry_process_count = tk.Entry(root, **entry_config)
-    entry_process_count.grid(row=1, column=1, padx=10, pady=10)
-    entry_process_count.insert(0, '5000')
+    
+    process_slider = tk.Scale(root, from_=500, to=30000, orient=tk.HORIZONTAL, **style_config, font=("Helvetica", 12), command=update_concurrency_limit)
+    process_slider.grid(row=1, column=1, padx=10, pady=10)
+    process_slider.set(5000)  # Default value
 
     tk.Label(root, text="Artist File:", **style_config, font=("Helvetica", 12)).grid(row=2, column=0, padx=10, pady=10, sticky="w")
     entry_artist_file = tk.Entry(root, **entry_config)
     entry_artist_file.grid(row=2, column=1, padx=10, pady=10)
     tk.Button(root, text="Browse", command=lambda: select_artist_file(base_urls), font=("Helvetica", 12)).grid(row=2, column=2, padx=10, pady=10)
 
-    start_button = tk.Button(root, text="Start", command=lambda: on_start(stop_flag, pause_flag, total_requests, matched_urls, link_combo, link_combo_lock, combo_set, concurrency_limit, base_urls), font=("Helvetica", 12), width=10)
+    start_button = tk.Button(root, text="Start", command=lambda: on_start(stop_flag, pause_flag, total_requests, matched_urls, link_combo, link_combo_lock, combo_set, base_urls), font=("Helvetica", 12), width=10)
     start_button.grid(row=3, column=0, padx=10, pady=10)
 
     pause_button = tk.Button(root, text="Pause", command=lambda: on_pause(pause_flag), font=("Helvetica", 12), width=10, state=tk.DISABLED)
