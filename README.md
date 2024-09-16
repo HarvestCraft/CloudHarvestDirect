@@ -7,11 +7,135 @@
   CloudHarvestDirect™
 </h1>
 
-
-
-## Overview:
+## Overview
 
 CloudHarvestDirect is a powerful tool designed to automate the process of checking SoundCloud links to find private or hidden tracks. It generates combinations of link identifiers, checks if they redirect to valid SoundCloud URLs, and saves any valid matches to an output file. The script includes a graphical user interface (GUI) built with `tkinter` for ease of use.
+
+## **Deprecated Versions**
+
+**Note:** The initial HarvestTool.py & BetaHarvestTool.py version of CloudHarvestDirect are now deprecated. Users are encouraged to upgrade to **Beta 3**, which includes significant improvements in performance, usability, and functionality.
+
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Deprecated Versions](#deprecated-versions)
+- [Key Changes in Beta 3](#key-changes-in-beta-3)
+  - [1. Code Organization and Structure](#1-code-organization-and-structure)
+  - [2. Improved Concurrency Handling](#2-improved-concurrency-handling)
+  - [3. Matched URLs Storage and Saving](#3-matched-urls-storage-and-saving)
+  - [4. GUI Enhancements](#4-gui-enhancements)
+  - [5. Save and Load State Functionality](#5-save-and-load-state-functionality)
+  - [6. Character Set Customization](#6-character-set-customization)
+  - [7. Performance Improvements](#7-performance-improvements)
+  - [8. Code Comments and Documentation](#8-code-comments-and-documentation)
+- [Conclusion](#conclusion)
+- [Features](#features)
+- [Creating an Artist File](#creating-an-artist-file)
+  - [Purpose](#purpose)
+  - [Format](#format)
+  - [Usage](#usage)
+- [Installation](#installation)
+  - [Prerequisites](#prerequisites)
+  - [Steps to Use on Windows](#steps-to-use-on-windows)
+  - [Steps to Use on Mac](#steps-to-use-on-mac)
+- [Screenshots](#screenshots)
+  - [Default Link Checker GUI](#default-link-checker-gui)
+  - [Link Checker in Use](#link-checker-in-use)
+  - [CloudHarvestDirect Link Searcher](#cloudharvestdirect-link-searcher)
+- [Technical Details](#technical-details)
+  - [Vulnerability Overview](#vulnerability-overview)
+  - [Script Functionality](#script-functionality)
+  - [Handling Duplicate Links](#handling-duplicate-links)
+  - [False Positives](#false-positives)
+- [Credits](#credits)
+
+
+## Key Changes in Beta 3
+
+This document outlines the new changes introduced in **Beta 3** of the **CloudHarvestDirect Harvest Tool**, compared to the initial beta version. The enhancements focus on improving performance, usability, and functionality of the tool.
+
+---
+
+
+### Key Changes in Beta 3
+
+#### 1. Code Organization and Structure
+
+- **Modular Import Statements**: The import statements are now organized into sections, improving readability and maintainability.
+- **Clear Global Variables**: Global variables are better organized, with descriptive names and comments explaining their purpose.
+- **Function Definitions with Comments**: Functions are clearly defined with accompanying comments that explain their functionality, making the codebase easier to understand.
+- **Structured Main Entry Point**: The main execution logic is encapsulated under the `if __name__ == "__main__":` block, following Python best practices.
+
+#### 2. Improved Concurrency Handling
+
+- **Active Tasks Counting**: Introduced counting of active asynchronous tasks to monitor the number of currently running tasks.
+- **Dynamic Concurrency Limit**: The concurrency limit per process can still be adjusted via the GUI slider and is now dynamically applied to control task execution effectively.
+- **Active Task Decrement Function**: A new function `decrement_active_tasks` accurately tracks task completion, ensuring reliable active task counts.
+- **Process and Task Management**: Enhanced management of processes and tasks leads to better resource utilization and prevents overloading the system.
+
+#### 3. Matched URLs Storage and Saving
+
+- **Use of Multiprocessing Queue**: Replaced `multiprocessing.Manager().list()` with `multiprocessing.Queue()` for storing matched URLs, resulting in improved performance and thread safety.
+- **Dedicated Saver Thread**: Implemented a saver thread that continuously writes matched URLs to an output file as they are found, ensuring data is not lost upon interruption.
+- **Real-Time Links per Minute Calculation**: The saver thread calculates and updates the number of links checked per minute, providing users with real-time performance metrics.
+
+#### 4. GUI Enhancements
+
+- **Additional Input Fields**:
+  - **Character Set Input**: Users can now specify the character set used for generating link combinations directly from the GUI.
+  - **Number of Processes Input**: Users can define the number of processes (threads) to utilize, allowing customization based on system capabilities.
+- **Enhanced Status Information**: The GUI now displays detailed status information, including:
+  - Total links checked.
+  - Number of links found.
+  - Links checked per minute.
+  - Current link combination being tested.
+  - Number of processes and concurrency per process.
+  - Maximum and active tasks running on the machine.
+  - Character set currently in use.
+- **Improved Layout and Readability**: The GUI components are organized into frames, enhancing the overall layout and user experience.
+
+#### 5. Save and Load State Functionality
+
+- **Save State Feature**: Users can save the current state of the tool, capturing essential parameters such as:
+  - Current link combination.
+  - Total requests made.
+  - Matched URLs count.
+  - Character set in use.
+- **Load State Feature**: Users can load a previously saved state to resume scanning from where they left off, facilitating long-running scans and providing resilience against interruptions.
+
+#### 6. Character Set Customization
+
+- **User-Defined Character Sets**: The tool now allows users to input a custom character set for generating link combinations, enabling more targeted or exhaustive scans.
+- **Validation of Character Set Input**: Input validation ensures that the character set is not empty, preventing runtime errors.
+
+#### 7. Performance Improvements
+
+- **Optimized Asynchronous I/O**: Code optimizations have been made to the asynchronous functions, improving the efficiency of network operations.
+- **Efficient Task Scheduling**: Improved task management logic leads to better scheduling and execution of tasks, reducing idle times and increasing throughput.
+- **Reduced Overhead**: Switching to a multiprocessing queue for matched URLs and introducing a dedicated saver thread reduces inter-process communication overhead.
+
+#### 8. Code Comments and Documentation
+
+- **Comprehensive Inline Comments**: The codebase now includes detailed inline comments that explain the functionality of code blocks and individual lines where necessary.
+- **Function Documentation**: Each function is accompanied by a docstring or comment that describes its purpose, inputs, and outputs.
+- **Section Headers**: The code is divided into logical sections with headers, making navigation and understanding of the code structure more straightforward.
+
+---
+
+### Conclusion
+
+The Beta 3 release of the **CloudHarvestDirect Harvest Tool** brings substantial improvements over the initial beta version. The enhancements focus on:
+
+- **Performance**: Optimizations in concurrency handling and task management lead to faster scanning and better resource utilization.
+- **Usability**: GUI enhancements and new features like save/load state and character set customization provide users with more control and flexibility.
+- **Reliability**: The introduction of a saver thread and improved error handling ensures that matched URLs are not lost and the tool can recover from interruptions.
+
+Users are encouraged to upgrade to Beta 3 to take advantage of these new features and improvements.
+
+---
+
+Thank you for using **CloudHarvestDirect Harvest Tool Beta 3**. If you encounter any issues or have suggestions for further improvements, please open an issue on the GitHub repository.
 
 ## Features
 
@@ -19,19 +143,21 @@ CloudHarvestDirect is a powerful tool designed to automate the process of checki
 - **User-Friendly GUI**: Start, stop, and monitor the progress of your link checking tasks through an intuitive interface.
 - **Customizable Starting Point**: Define a starting point for the link combinations to focus on specific segments of the identifier space.
 - **Artist File Integration**: Narrow down your search by focusing on specific artists through an easy-to-create artist file.
+- **Save and Load State**: Save your progress and resume scanning from where you left off.
+- **Character Set Customization**: Specify a custom character set for generating link combinations.
 
 ## Creating an Artist File
 
 ### Purpose
 
-An artist .txt file allows you to target your search to links associated with specific artists, avoiding unrelated private links. This feature is particularly useful when you want to focus on specific artists.
+An artist `.txt` file allows you to target your search to links associated with specific artists, avoiding unrelated private links. This feature is particularly useful when you want to focus on specific artists.
 
 ### Format
 
 - Each line in the artist file should contain the full URL of the artist's SoundCloud page, ending with a `/`.
 - Example entry: `https://soundcloud.com/artistname/`
 - The trailing slash at the end of the artist URL ensures that only exact matches are considered.
-- ` .txt ` format
+- **File Format**: Save the file with a `.txt` extension.
 
 ### Usage
 
@@ -44,6 +170,10 @@ An artist .txt file allows you to target your search to links associated with sp
 
 - Python 3.x installed on your machine.
 - Basic command line knowledge.
+- Required Python packages:
+  - `aiohttp`
+  - `tkinter` (usually comes pre-installed with Python)
+
 
 ### Steps to Use on Windows:
 
