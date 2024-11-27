@@ -7,6 +7,10 @@
   CloudHarvestDirect™
 </h1>
 
+
+## As of 10/24 soundcloud changed the links to 17x and if you run the math its just not gonnd work out.
+THIS PROJECT IS DEAD
+
 ## Overview
 
 CloudHarvestDirect is a powerful tool designed to automate the process of checking SoundCloud links to find private or hidden tracks. It generates combinations of link identifiers, checks if they redirect to valid SoundCloud URLs, and saves any valid matches to an output file. The script includes a graphical user interface (GUI) built with `tkinter` for ease of use.
